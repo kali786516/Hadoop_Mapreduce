@@ -73,6 +73,7 @@ public class InvertedIndexMapper extends Mapper<LongWritable,Text,Text,Text> {
 
         String line= value.toString();//get lines from file
         StringTokenizer tokenizer=new StringTokenizer(line);// get words from file based on word similar to flatmap
+        //StringTokenizer splits the line into words
 
         while(tokenizer.hasMoreTokens()){
             word.set(tokenizer.nextToken());
