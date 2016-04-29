@@ -64,8 +64,11 @@ public class InvertedIndexMapper extends Mapper<LongWritable,Text,Text,Text> {
 
     public void map(LongWritable key, Text value,Context context) throws IOException,InterruptedException {
 
-        FileSplit currentSplit=((FileSplit) context.getInputSplit());
-        String filenamestr=currentSplit.getPath().getName();//gets path and filename of file
+        /*will get us filename for the current line thats being processed*/
+
+        FileSplit currentSplit=((FileSplit) context.getInputSplit()); // context.getInputsplit gets input split the mapper is currently proccessing
+        // file split is a subclass of input split
+        String filenamestr=currentSplit.getPath().getName();//gets  filename of file
         filename=new Text(filenamestr); //file nam stored in a variable
 
         String line= value.toString();//get lines from file
