@@ -50,6 +50,25 @@ import java.util.StringTokenizer;
 * table.flatMap{ case(text,website) => for (word <- text.split(" ")) yield (website,word)}
 *      .map{case (text,website) => (text,website)}.groupByKey()
 *
+*
+*
+* */
+
+
+/*
+* Map ClassInput:-
+* this is kali,abc.com
+* this is kali,xyz.com
+*
+* Map ClassOp:-
+* this,abc.com
+* this,xyz.com
+* is,abc.com
+* is,xyz.com
+* kali,abc.com
+* kali,xyz.com
+*
+*
 * */
 
 
