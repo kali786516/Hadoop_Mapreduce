@@ -45,11 +45,23 @@ import java.io.IOException;
 *
 * table.flatMap{ case(text,website) => for (word <- text.split(" ")) yield (website,word)}
 *      .map{case (text,website) => (text,website)}.groupByKey()
+
+* */
+
+/*
+* Reduce Class Input:-
+* Reduce ClassInp:-
+* this,abc.com
+* this,xyz.com
+* is,abc.com
+* is,xyz.com
+* kali,abc.com
+* kali,xyz.com
 *
-*
-*
-*
-*
+* Reduce ClassOutput:-  Spark GroupByKey
+* this,abc.com|xyz.com
+* kali,abc.com|xyx.com
+* is,abc.com|xyz.com
 *
 *
 * */
@@ -60,13 +72,13 @@ public class InvertedIndexReducer extends Reducer<Text,Text,Text,Text> {
    @Override
     public void reduce(final Text key,final Iterable<Text> values,final Context context) throws IOException,InterruptedException {
 
-       StringBuilder stringBuilder=new StringBuilder();//used to concatenate all the filenames seperated by delimeter
+       StringBuilder stringBuilder=new StringBuilder();//used to concatenate all the filenames (website names) seperated by delimeter (|)
 
        for(Text value:values) {
-           stringBuilder.append(value.toString());//iterate list of filenames and add to stringbuilder
+           stringBuilder.append(value.toString());//iterate list of filenames (website) based on key and add to string builder
 
        if (values.iterator().hasNext()) {
-           stringBuilder.append("|");// seperate each file name with pipe as delimeter
+           stringBuilder.append("|");// seperate each file name (website name) based on key with pipe as delimeter
        }
 
        }
